@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>ClipperShip</title>
+        <link href="/frontend/css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <header>
+            <div class="container">
+                <div class="logo">
+                    <img src="./images/logo.png" alt="ClipperShip">
+                </div>
+                <div class="main-title">
+                    <h1>Clipper Ship Foundation</h1>
+                </div>
+                <div class="nav">
+                    <ul>
+                        <li><a href="https://clippershipfoundation.wordpress.com/" target="_blank">Go To Main Page</a></li>
+                        <li><a href="#">About</a></li>
+                        <h1><%= userName %> here</h1>
+
+                    </ul>
+                </div>
+            </div>
+        </header>
+        <section>
+            <h1>File Upload</h1>
+              <form>
+                <input type="file" id="fileInput">
+                <br><br>
+                <button type="submit">Submit</button>
+              </form>
+            <div class="drop-zone">
+                <div class="drop-zone-content">
+                  Drag and Drop Files Here
+                </div>
+              </div>
+        </section>
+        <footer>
+
+        </footer>
+        <script src="/frontend/javascript/dynamic.js"></script>
+    </body>
+
+</html>
