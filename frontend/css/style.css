@@ -1,0 +1,36 @@
+body {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    padding: 20px 0;
+    text-align: center;
+}
+
+img {
+    width: 600px;
+    height: 450px;
+}
+
+
+.drop-zone {
+    height: 300px;
+    width: 600px;
+    border: 2px dashed #ddd;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    border-radius: 5px;
+    margin: 50px auto;
+  }
+  
+  .drop-zone-content {
+    text-align: center;
+  }
+
+
+  
