@@ -6,6 +6,7 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>ClipperShip</title>
         <link href="/frontend/css/style.css" rel="stylesheet">
+		<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     </head>
     <body>
         <header>
@@ -25,22 +26,22 @@
             </div>
         </header>
         <section>
-            <h1>File Upload</h1>
-              <form>
-                <input type="file" id="fileInput">
-                <br><br>
-                <button type="submit">Submit</button>
-              </form>
-            <div class="drop-zone">
-                <div class="drop-zone-content">
-                  Drag and Drop Files Here
-                </div>
-              </div>
+            
+			<div id="drop-zone">
+				<p>Drop files here</p>
+				<input type="file" id="file-input" multiple>
+				<p id="error-message"></p>
+				<ul id="file-list"></ul>
+
+			</div>
+			  
+
         </section>
         <footer>
 
         </footer>
-        <script src="/frontend/javascript/dynamic.js"></script>
+        <!-- <script src="/frontend/javascript/dynamic.js"></script> -->
+		<script src="/frontend/javascript/dropbox.js"></script>
     </body>
 
 </html>
