@@ -25,4 +25,13 @@ dropZone.addEventListener('drop', function(e) {
 
   const file = e.dataTransfer.files[0];
   console.log(file);
+  input.files[0] = file;
+  input.addEventListener('change', function() {
+	console.log(input.files[0].name);
+  });
+//   console.log(document.querySelector('#fileInput').innerHTML);
+//   document.querySelector('#fileInput').innerHTML = file.name;
+//   console.log(file.name);
+//   console.log(document.querySelector('#fileInput').innerHTML);
+  
 });
