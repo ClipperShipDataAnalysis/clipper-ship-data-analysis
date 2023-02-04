@@ -2,7 +2,7 @@ let dropZone = document.getElementById("drop-zone");
 let fileInput = document.getElementById("file-input");
 let errorMessage = document.getElementById("error-message");
 let fileList = document.getElementById("file-list");
-  
+
   dropZone.addEventListener("dragover", (e) => {
 	e.preventDefault();
 	dropZone.classList.add("drag-over");
@@ -56,7 +56,38 @@ let fileList = document.getElementById("file-list");
 		 errorMessage.innerHTML = `File type ${files[i].type} is not allowed. Please try uploading a CSV, XLS, or XLSX file.`;
 	   }
 	 }
-	// Do something with the files here
+	 // If there are no files in the form data object, show an error message
+	 if (formData.getAll("files[]").length === 0) {
+		console.error("No files selected.");
+	   	errorMessage.innerHTML = "No files selected. Please try uploading a CSV, XLS, or XLSX file.";
+		// datalist = null;
+		// modules.export.datalist = null;
+		// return null;
+	 }
+	 // If there are files in the form data object, send the data to the database
+	 else {
+		// pass form data object to another javascript file
+		let data = formData.getAll("files[]");
+		// console.log(data);
+		
+		// const { spawn } = require("child_process");
+		// const pythonScript = "../xlstojson.py";
+		// const files = ["file1.txt", "file2.txt", "file3.txt"];
 
-  }
+		// const pythonProcess = spawn("python", [pythonScript, data]);
+
+		// pythonProcess.stdout.on("data", (data) => {
+		// 	console.log(`stdout: ${data}`);
+		// });
+
+		// pythonProcess.stderr.on("data", (data) => {
+		// 	console.error(`stderr: ${data}`);
+		// });
+
+		// pythonProcess.on("close", (code) => {
+		// 	console.log(`child process exited with code ${code}`);
+		// });
+	 }
+	
+  	}
   
