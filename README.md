@@ -1,1 +1,3 @@
-# clipper-ship-data-analysis
+# Clippership Data Analysis
+
+Analyzing data for the Clippership organization
