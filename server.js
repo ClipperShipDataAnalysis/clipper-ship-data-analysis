@@ -14,25 +14,25 @@ const collection = db.collection('ClipperShipGrantData');
 console.log(collection);
 
 const moviesSchema = new mongoose.Schema({
-	index: Array,
-	columns: Array,
-	data: Array,
-	index_names: Array,
-	column_names: Array
+    index: Array,
+    columns: Array,
+    data: Array,
+    index_names: Array,
+    column_names: Array
 });
 
 
 const Movie = mongoose.model("Movie", moviesSchema);
 
 app.get('/', (req, res) => {
-	collection.findOne({}, function(err, doc) {
-		if (err) throw err;
-		res.render('index', {
-			moviesList: doc
-		})
-	});
+    collection.findOne({}, function(err, doc) {
+        if (err) throw err;
+        res.render('index', {
+            moviesList: doc
+        })
+    });
 })
 
-app.listen(4000, function() {
-    console.log('Server is running on port 4000');
+app.listen(process.env.PORT || 4000, function() {
+    console.log('Server is running!');
 })
