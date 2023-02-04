@@ -4,7 +4,7 @@ const app = express();
 const ejs = require('ejs');
 
 app.set('view engine', 'ejs');
-app.use(express.static(__dirname + '/clipper-ship-data-analysis'));
+app.use(express.static(__dirname + '/frontend'));
 
 mongoose.connect("mongodb+srv://john:Jn4wXiyqcn6u1vGo@cluster0.lcwl3.mongodb.net/ClipperShipGrantData?retryWrites=true&w=majority")
 
@@ -32,6 +32,11 @@ app.get('/', (req, res) => {
         })
     });
 })
+
+app.get('/data', (req, res) => {
+	res.render("data");
+}
+)
 
 app.listen(process.env.PORT || 4000, function() {
     console.log('Server is running!');
