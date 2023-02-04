@@ -20,12 +20,14 @@
                 <div class="nav">
                     <ul>
                         <li><a href="https://clippershipfoundation.wordpress.com/" target="_blank">Go To Main Page</a></li>
-                        <li><a href="#">About</a></li>
-						<body>
-                            <%moviesList.forEach(movie => {%>
-                                <p><%= movie.data %></p>
-                            <%})%>})
-                        </body>
+                        <li><a href="#">About</a></li
+						
+						<!-- print all arrays in data array in console -->
+						<% for(var i = 0; i < moviesList["data"].length; i++) { %>
+							<p><%= moviesList["data"][i] %></p>
+						<% } %>
+
+
                     </ul>
                 </div>
             </div>

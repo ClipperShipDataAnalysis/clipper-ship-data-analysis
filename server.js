@@ -5,25 +5,31 @@ const ejs = require('ejs');
 
 app.set('view engine', 'ejs');
 
-mongoose.connect("mongodb+srv://john:Jn4wXiyqcn6u1vGo@cluster0.lcwl3.mongodb.net/test")
+mongoose.connect("mongodb+srv://john:Jn4wXiyqcn6u1vGo@cluster0.lcwl3.mongodb.net/ClipperShipGrantData?retryWrites=true&w=majority")
 
-const moviesSchema = {
-    index: Array,
-    columns: Array,
-    data: Array,
-    index_names: Array,
-    column_names: Array
+const db = mongoose.connection;
+const collection = db.collection('ClipperShipGrantData');
 
-}
+console.log(collection);
+
+const moviesSchema = new mongoose.Schema({
+	index: Array,
+	columns: Array,
+	data: Array,
+	index_names: Array,
+	column_names: Array
+});
+
 
 const Movie = mongoose.model("Movie", moviesSchema);
 
 app.get('/', (req, res) => {
-    Movie.find({}, function(err, movies) {
-        res.render('index', {
-            moviesList: movies
-        })
-    })
+	collection.findOne({}, function(err, doc) {
+		if (err) throw err;
+		res.render('index', {
+			moviesList: doc
+		})
+	});
 })
 
 app.listen(4000, function(){
