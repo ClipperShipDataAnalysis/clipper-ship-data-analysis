@@ -30,7 +30,7 @@
                <div class="nav">
                    <ul>
                        <li><a href="https://clippershipfoundation.wordpress.com/" target="_blank">Company Main Page</a></li>
-					   <li><a href="/index">Upload Files</a></li>
+					   <li><a href="/">Upload Files</a></li>
                        <li><a href="/about">About</a></li>
                        <!-- <li><a href="/data.html">Access Data</a></li> -->
    
@@ -59,7 +59,7 @@
 			orgdict = {}
 			
 
-			orgdict["Totals"] = pd.DataFrame(columns = ["Year", "Please Indicate The Amount Of Money Given By Clipper Ship", "Please Indicate The Amount Of Money Used By Clipper Ship", "Please indicate the number of Opportunity Youth (ages 16-24) placed into employment in FY' 23:", "As appropriate, please indicate the number of Opportunity Youth successfully placed into supported or permanent housing in FY' 23:", "Please Indicate Number Of Youth In Program", "Please Indicate Number Of Opportunity Youth achieving different educational milestones in FY' 23, such as HS diploma, GED, college matriculation"])
+			<!-- orgdict["Totals"] = pd.DataFrame(columns = ["Year", "Please Indicate The Amount Of Money Given By Clipper Ship", "Please Indicate The Amount Of Money Used By Clipper Ship", "Please indicate the number of Opportunity Youth (ages 16-24) placed into employment in FY' 23:", "As appropriate, please indicate the number of Opportunity Youth successfully placed into supported or permanent housing in FY' 23:", "Please Indicate Number Of Youth In Program", "Please Indicate Number Of Opportunity Youth achieving different educational milestones in FY' 23, such as HS diploma, GED, college matriculation"]) -->
 			totaldict = dict()
 
 			for i in range(len(dics)):
@@ -124,13 +124,16 @@
 	   <div id="plot3"></div>
 	   <div id="plot4"></div> -->
 	   <py-script output="plot1">
-			fig, ax = plt.subplots()
-			for key in orgdict.keys():
-				for j in range(overalldf.shape[0]):
+			fig,ax = plt.subplots(6, 3)
+			<!-- print(len(list(orgdict.keys()))) -->
+			for i in range (6):
+				for j in range(len(list(orgdict.keys()))):
+					key = list(orgdict.keys())[j]
 					if len(orgdict.get(key)) > 1: #can use this line if you want to remove plots for companies with only one year
-						plt.plot(orgdict.get(key)['Year'], orgdict.get(key)[overalldf['Question'][j]])
-						plt.title(str(overalldf['Question'][j])+ " by year for "+ str(key))
-						plt.show()
+						orgdict[key] = orgdict.get(key).sort_values(by=['Year'])
+						ax[i, j].plot(orgdict.get(key)['Year'], orgdict.get(key)[overalldf['Question'][i]])
+						ax[i, j].title.set_text("i")
+			plt.show()
 			fig
 		</py-script>
 			
@@ -138,29 +141,34 @@
 		<!-- </py-script> -->
 		<div id="plot2"></div>
 		<py-script output="plot2">	
-			fig, ax = plt.subplots()			
-			for i in range(overalldf.shape[0]):
-				plt.bar(list(orgs), height = datadict[i], color = "maroon")
-				plt.title(overalldf['Question'][i])
-				plt.xlabel("Organization")
-				plt.ylabel("Value")
-				plt.show()
+			fig,ax = plt.subplots(3, 2)
+			for i in range (3):
+				for j in range(2):
+					ax[i, j].bar(list(orgs), height = datadict[i+j], color = ('blue', 'maroon', 'green'))
+					ax[i, j].title.set_text("Question " + str(i+j + 1))
+			plt.xlabel("Organization")
+			plt.ylabel("Value")
+			fig.tight_layout(w_pad=1.0)
+			plt.show()
 			fig
 		</py-script>
 		<div id="plot3"></div>
 		<py-script output="plot3">	
-			fig, ax = plt.subplots()
-			for i in range(len(overalldf['Question'])):
-				keyarr = []
-				plotarr = []
-				for key in totaldict.keys():
-					keyarr.append(key)
-					plotarr.append(totaldict.get(key)[i])
-				plt.plot(keyarr, plotarr)
-				plt.title("Yearly Trends For " + str(overalldf['Question'][i]) + " Totals")
-				plt.xlabel("Year")
-				plt.ylabel("Value")
-				plt.show()
+			fig,ax = plt.subplots(3, 2)
+			for i in range (3):
+				for j in range(2):
+					keyarr = []
+					plotarr = []
+					for key in totaldict.keys():
+						keyarr.append(key)
+						plotarr.append(totaldict.get(key)[i+j])
+					<!-- print(keyarr)
+					print(plotarr) -->
+					ax[i, j].plot(keyarr, plotarr)
+					ax[i, j].title.set_text("yo")
+			plt.show()
+			fig.set_dpi(200)
+			fig.tight_layout(w_pad=5.0)
 			fig
 
 		</py-script>
