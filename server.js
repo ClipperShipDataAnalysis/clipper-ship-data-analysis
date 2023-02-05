@@ -38,6 +38,11 @@ app.get('/data', (req, res) => {
 }
 )
 
+app.get('/about', (req, res) => {
+	res.render("about");
+}
+)
+
 app.listen(process.env.PORT || 4000, function() {
     console.log('Server is running!');
 })
