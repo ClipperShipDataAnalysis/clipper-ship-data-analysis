@@ -2,6 +2,7 @@ let dropZone = document.getElementById("drop-zone");
 let fileInput = document.getElementById("file-input");
 let errorMessage = document.getElementById("error-message");
 let fileList = document.getElementById("file-list");
+const { spawn } = require("child_process");
 
   dropZone.addEventListener("dragover", (e) => {
 	e.preventDefault();
@@ -17,12 +18,12 @@ let fileList = document.getElementById("file-list");
 	e.preventDefault();
 	dropZone.classList.remove("drag-over");
 	var files = e.dataTransfer.files;
-	handleFiles(files);
+	var list = handleFiles(files);
   });
   
   fileInput.addEventListener("change", (e) => {
 	var files = e.target.files;
-	handleFiles(files);
+	var list = handleFiles(files);
   });
   
   function handleFiles(files) {
@@ -62,7 +63,7 @@ let fileList = document.getElementById("file-list");
 	   	errorMessage.innerHTML = "No files selected. Please try uploading a CSV, XLS, or XLSX file.";
 		// datalist = null;
 		// modules.export.datalist = null;
-		// return null;
+		return null;
 	 }
 	 // If there are files in the form data object, send the data to the database
 	 else {
@@ -70,23 +71,8 @@ let fileList = document.getElementById("file-list");
 		let data = formData.getAll("files[]");
 		// console.log(data);
 		
-		// const { spawn } = require("child_process");
-		// const pythonScript = "../xlstojson.py";
-		// const files = ["file1.txt", "file2.txt", "file3.txt"];
-
-		// const pythonProcess = spawn("python", [pythonScript, data]);
-
-		// pythonProcess.stdout.on("data", (data) => {
-		// 	console.log(`stdout: ${data}`);
-		// });
-
-		// pythonProcess.stderr.on("data", (data) => {
-		// 	console.error(`stderr: ${data}`);
-		// });
-
-		// pythonProcess.on("close", (code) => {
-		// 	console.log(`child process exited with code ${code}`);
-		// });
+		
+		return data;	
 	 }
 	
   	}

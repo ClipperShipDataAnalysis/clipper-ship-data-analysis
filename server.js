@@ -3,8 +3,6 @@ const mongoose = require('mongoose');
 const app = express();
 const ejs = require('ejs');
 const { spawn } = require('child_process');
-// let myModule = require('./frontend/javascript/dropbox.js');
-// import { datalist } from '';
 let { PythonShell } = require('python-shell');
 
 app.set('view engine', 'ejs');
@@ -43,43 +41,35 @@ app.get('/data', (req, res) => {
 )
 
 app.post('/data', (req, res) => {
-	console.log(myModule.datalist);
-	if(data == null) {
+	console.log(req.body);
+	// console.log(res);
+	
+	if(res.body == null) {
 		console.log("data is null");
 	}
 	else{
 		// Reading Python files
-	// 	var dataToSend;
-	// 	// spawn new child process to call the python script
-	// 	const python = spawn('python3', ['public/script.py', datalist]);
+		var dataToSend;
+		// spawn new child process to call the python script
+		const python = spawn('python3', ['/frontend/xlstojson.py', req.body]);
   
-	//    // collect data from script
-	//    python.stdout.on('data', function (data) {
-	// 	dataToSend = data.toString();
-	//    });
+	   // collect data from script
+	   python.stdout.on('data', function (data) {
+		dataToSend = data.toString();
+	   });
   
-	//    python.stderr.on('data', data => {
-	// 	console.error(`stderr: ${data}`);
-	//    });
+	   python.stderr.on('data', data => {
+		console.error(`stderr: ${data}`);
+	   });
   
-	//    // in close event we are sure that stream from child process is closed
-	//    python.on('exit', (code) => {
-	//    console.log(`child process exited with code ${code}, ${dataToSend}`);
-	//    response.sendFile(`${__dirname}/public/result.html`);
-	//   }); 
+	   // in close event we are sure that stream from child process is closed
+	   python.on('exit', (code) => {
+	   console.log(`child process exited with code ${code}, ${dataToSend}`);
+	   response.sendFile(`${__dirname}/public/result.html`);
+	  }); 
+	  res.render("data");
 	}
-	// let options = {
-	// 	mode: 'text',
-	// 	pythonPath: 'python',
-	// 	pythonOptions: ['-u'],
-	// 	args: res.body
-	// };
-	// PythonShell.run('xlstojson.py', options, function (err, results) {
-	// 	if (err) throw err;
-	// 	console.log('finished');
-	// 	console.log(results);
-	// });
-})
+});
 	
 
 app.listen(4000, function() {
