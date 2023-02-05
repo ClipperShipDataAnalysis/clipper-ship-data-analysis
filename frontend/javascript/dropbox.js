@@ -2,7 +2,6 @@ let dropZone = document.getElementById("drop-zone");
 let fileInput = document.getElementById("file-input");
 let errorMessage = document.getElementById("error-message");
 let fileList = document.getElementById("file-list");
-const { spawn } = require("child_process");
 
   dropZone.addEventListener("dragover", (e) => {
 	e.preventDefault();
@@ -69,9 +68,6 @@ const { spawn } = require("child_process");
 	 else {
 		// pass form data object to another javascript file
 		let data = formData.getAll("files[]");
-		// console.log(data);
-		
-		
 		return data;	
 	 }
 	
