@@ -1,4 +1,6 @@
-
+<p align="center">
+ <img src="/fontend/html/Images/logo.png" width="300" />
+</p>
 # Clipper Ship Data Analysis
 
 This project was developed during a Hackathon event (DeisHacks 2023), with the goal of aiding the Clipper Ship Foundation's data collection and visualization problem. The Brandeis mentor for the Clipper Ship Foundation, Cameron, shared the data collection and analysis related issues that the people at the organization were facing and their enthusiasm for finding a solution. Therefore, we utilized our coding skills and belief in making a difference to make their vision a reality.
