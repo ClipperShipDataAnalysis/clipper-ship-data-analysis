@@ -1,5 +1,5 @@
 <p align="center">
- <img src="fontend/html/Images/logo.png" width="300" />
+ <img src="/fontend/html/Images/logo.png" width="300" />
 </p>
 # Clipper Ship Data Analysis
 
